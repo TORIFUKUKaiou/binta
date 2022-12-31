@@ -16,5 +16,5 @@ jobs:
       - run: |
           mix deps.get
           mix test
-          env:
-            BINTA_SLACK_INCOMING_WEBHOOK_URL: ${{ secrets.BINTA_SLACK_INCOMING_WEBHOOK_URL }}
+        env:
+          BINTA_SLACK_INCOMING_WEBHOOK_URL: ${{ secrets.BINTA_SLACK_INCOMING_WEBHOOK_URL }}
