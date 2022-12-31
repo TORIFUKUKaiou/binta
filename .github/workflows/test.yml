@@ -1,0 +1,17 @@
+name: text
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15,30 5,23 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '25.2'
+          elixir-version: '1.14.2'
+      - run: mix deps.get
+      - run: mix test
