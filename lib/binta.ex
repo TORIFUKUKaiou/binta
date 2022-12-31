@@ -38,6 +38,9 @@ defmodule Binta do
     Binta.Inoki.build_message()
     |> Kernel.<>("\n\n\n")
     |> Kernel.<>(event_now)
+    |> Kernel.<>(
+      "\n\nThis bot is https://github.com/TORIFUKUKaiou/binta .\nThanks for GitHub Actions workflows & William Henry \"Bill\" Gates III."
+    )
   end
 
   defp event_now do
