@@ -7,8 +7,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment:
-      name: secrets
     steps:
       - uses: actions/checkout@v2
       - uses: erlef/setup-beam@v1
@@ -16,6 +14,9 @@ jobs:
           otp-version: '25.2'
           elixir-version: '1.14.2'
       - run: mix deps.get
-      - run: mix test
+      - name: Run mix test
+        run:
+          echo $BINTA_SLACK_INCOMING_WEBHOOK_URL
+          mix test
         env:
           BINTA_SLACK_INCOMING_WEBHOOK_URL: ${{ secrets.BINTA_SLACK_INCOMING_WEBHOOK_URL }}
