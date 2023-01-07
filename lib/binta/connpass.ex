@@ -11,6 +11,13 @@ defmodule Binta.Connpass do
       |> run()
       |> handle_response()
 
+    ymd = ymd(utc_today.year, utc_today.month, utc_today.day)
+
+    ymd_events =
+      %{ymd: ymd, series_id: 11144}
+      |> run()
+      |> handle_response()
+
     before_year = if utc_today.month == 1, do: utc_today.year - 1, else: utc_today.year
 
     before_month =
@@ -24,6 +31,7 @@ defmodule Binta.Connpass do
     |> run()
     |> handle_response()
     |> Kernel.++(events)
+    |> Kernel.++(ymd_events)
     |> Enum.filter(fn %{"started_at" => started_at, "ended_at" => ended_at} ->
       {:ok, start, _} = DateTime.from_iso8601(started_at)
       {:ok, ending, _} = DateTime.from_iso8601(ended_at)
@@ -41,6 +49,10 @@ defmodule Binta.Connpass do
 
   defp ym(year, month) do
     "#{year}#{month |> Integer.to_string() |> String.pad_leading(2, "0")}"
+  end
+
+  defp ymd(year, month, day) do
+    "#{ym(year, month)}#{day |> Integer.to_string() |> String.pad_leading(2, "0")}"
   end
 
   defp handle_response({:error, _}), do: []
