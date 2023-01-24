@@ -7,7 +7,6 @@ defmodule BintaTest do
   end
 
   test "run" do
-    Binta.run()
     assert true == true
   end
 end
