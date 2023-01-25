@@ -7,14 +7,14 @@ defmodule Binta.Connpass do
     ym = ym(utc_today.year, utc_today.month)
 
     events =
-      %{ym: ym, series_id: 11144}
+      %{ym: ym, series_id: 11144, count: 100}
       |> run()
       |> handle_response()
 
     ymd = ymd(utc_today.year, utc_today.month, utc_today.day)
 
     ymd_events =
-      %{ymd: ymd, series_id: 11144}
+      %{ymd: ymd, series_id: 11144, count: 100}
       |> run()
       |> handle_response()
 
@@ -27,7 +27,7 @@ defmodule Binta.Connpass do
 
     before_ym = ym(before_year, before_month)
 
-    %{ym: before_ym, series_id: 11144}
+    %{ym: before_ym, series_id: 11144, count: 100}
     |> run()
     |> handle_response()
     |> Kernel.++(events)
