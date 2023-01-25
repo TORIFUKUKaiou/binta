@@ -1,11 +1,11 @@
-name: test
+name: binta
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
-  test:
+  binta:
     runs-on: ubuntu-22.04
     environment:
       name: secrets
