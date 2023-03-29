@@ -1,0 +1,19 @@
+name: empty commit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1,3,20 * *'
+
+jobs:
+  commit-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: empty commit
+        run: |
+          git config user.name "TORIFUKUKaiou"
+          git config user.email "torifuku.kaiou@gmail.com"
+          git commit --allow-empty -m "empty commit"
+          git push origin main
